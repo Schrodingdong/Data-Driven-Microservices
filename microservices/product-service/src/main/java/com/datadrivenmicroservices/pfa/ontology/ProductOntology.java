@@ -28,17 +28,17 @@ public class ProductOntology {
         // initialise Empty Model
         Model model = ModelFactory.createDefaultModel();
         // initialise Schema
-        Resource product = model.createResource(productBaseUri + "/definition")
+        Resource product = model.createResource(productBaseUri)
                 .addProperty(RDF.type, RDFS.Class);
-        Resource productName = model.createResource(productBaseUri + "/productName/definition")
+        Resource productName = model.createResource(productBaseUri + "#productName")
                 .addProperty(RDF.type, RDF.Property)
                 .addProperty(RDFS.domain, product)
                 .addProperty(RDFS.range, XSD.xstring);
-        Resource productDescription = model.createResource(productBaseUri + "/productDescription/definition")
+        Resource productDescription = model.createResource(productBaseUri + "#productDescription")
                 .addProperty(RDF.type, RDF.Property)
                 .addProperty(RDFS.domain, product)
                 .addProperty(RDFS.range, XSD.xstring);
-        Resource productPrice = model.createResource(productBaseUri + "/productPrice/definition")
+        Resource productPrice = model.createResource(productBaseUri + "#productPrice")
                 .addProperty(RDF.type, RDF.Property)
                 .addProperty(RDFS.domain, product)
                 .addProperty(RDFS.range, XSD.xfloat);
@@ -50,10 +50,10 @@ public class ProductOntology {
         File f = new File(productOntologyFilePath);
         Model model = readOntologyFromFile(f);
         model.createResource(productBaseUri + "/product/" + product.getId())
-                .addProperty(RDF.type, model.getResource(productBaseUri + "/definition"))
-                .addProperty(model.getProperty(productBaseUri + "/productName/definition"), product.getProductName())
-                .addProperty(model.getProperty(productBaseUri + "/productDescription/definition"), product.getProductDescription())
-                .addProperty(model.getProperty(productBaseUri + "/productPrice/definition"), String.valueOf(product.getProductPrice()));
+                .addProperty(RDF.type, model.getResource(productBaseUri))
+                .addProperty(model.getProperty(productBaseUri + "#productName"), product.getProductName())
+                .addProperty(model.getProperty(productBaseUri + "#productDescription"), product.getProductDescription())
+                .addProperty(model.getProperty(productBaseUri + "#productPrice"), String.valueOf(product.getProductPrice()));
         writeOntology(model);
     }
 
@@ -62,10 +62,10 @@ public class ProductOntology {
         Model model = readOntologyFromFile(f);
         for (Product product : productList) {
             model.createResource(productBaseUri + "/product/" + product.getId())
-                    .addProperty(RDF.type, model.getResource(productBaseUri + "/definition"))
-                    .addProperty(model.getProperty(productBaseUri + "/productName/definition"), product.getProductName())
-                    .addProperty(model.getProperty(productBaseUri + "/productDescription/definition"), product.getProductDescription())
-                    .addProperty(model.getProperty(productBaseUri + "/productPrice/definition"), String.valueOf(product.getProductPrice()));
+                    .addProperty(RDF.type, model.getResource(productBaseUri))
+                    .addProperty(model.getProperty(productBaseUri + "#productName"), product.getProductName())
+                    .addProperty(model.getProperty(productBaseUri + "#productDescription"), product.getProductDescription())
+                    .addProperty(model.getProperty(productBaseUri + "#productPrice"), String.valueOf(product.getProductPrice()));
         }
         writeOntology(model);
     }

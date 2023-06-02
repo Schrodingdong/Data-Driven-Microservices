@@ -38,6 +38,7 @@ public class ProductService {
         if (product.getProductName() != null) existingProduct.setProductName(product.getProductName());
         if (product.getProductDescription() != null) existingProduct.setProductDescription(product.getProductDescription());
         if (product.getProductPrice() != 0) existingProduct.setProductPrice(product.getProductPrice());
+        productOntologyService.init(); // rebuild the RDF file after updating the product
         return productRepository.save(existingProduct);
     }
 
