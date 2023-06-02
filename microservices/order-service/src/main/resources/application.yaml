@@ -1,0 +1,11 @@
+server:
+  port: 9092
+
+
+rdf:
+  order:
+    base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/order
+    file-path: src/main/resources/order.rdf
+spring:
+  jpa:
+    show-sql: true
