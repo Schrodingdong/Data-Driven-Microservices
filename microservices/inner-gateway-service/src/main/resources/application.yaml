@@ -1,0 +1,23 @@
+server:
+  port: 8082
+
+spring:
+  cloud:
+    discovery:
+      locator:
+        enabled: true
+        lower-case-service-id: true
+    gateway:
+      routes:
+        - id: product-service-route
+          uri: lb://product-service
+          predicates:
+            - Path=/product/**
+        - id: customer-service-route
+          uri: lb://customer-service
+          predicates:
+            - Path=/customer/**
+        - id: order-service-route
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**

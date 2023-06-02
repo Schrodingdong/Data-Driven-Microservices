@@ -1,0 +1,55 @@
+server:
+  port: 8081
+
+route-matcher:
+  - product:
+    - name: product-save-route
+      url: http://localhost:8082/product/save
+      method: POST
+    - name: product-get-by-id-route
+      url: http://localhost:8082/product/get/{id}
+      method: GET
+    - name: product-get-all-route
+      url: http://localhost:8082/product/get/
+      method: GET
+    - name: product-delete-route
+      url: http://localhost:8082/product/delete/{id}
+      method: DELETE
+    - name: product-update-route
+      url: http://localhost:8082/product/update/{id}
+      method: POST
+  - customer:
+    - name: customer-save-route
+      url: http://localhost:8083/customer/save
+      method: POST
+    - name: customer-get-by-id-route
+      url: http://localhost:8083/customer/get/{id}
+      method: GET
+    - name: customer-get-all-route
+      url: http://localhost:8083/customer/get/
+      method: GET
+    - name: customer-delete-route
+      url: http://localhost:8083/customer/delete/{id}
+      method: DELETE
+    - name: customer-update-route
+      url: http://localhost:8083/customer/update/{id}
+      method: POST
+  - order:
+    - name: order-save-route
+      url: http://localhost:8084/order/create
+      method: POST
+    - name: order-get-by-id-route
+      url: http://localhost:8084/order/get/{id}
+      method: GET
+    - name: order-get-all-route
+      url: http://localhost:8084/order/get/
+      method: GET
+    - name: order-get-by-customer-id-route
+      url: http://localhost:8084/order/get/customer/{customerId}
+      method: GET
+    - name: order-delete-route
+      url: http://localhost:8084/order/delete/{id}
+      method: DELETE
+    - name: order-update-route
+      url: http://localhost:8084/order/update/{id}
+      method: POST
