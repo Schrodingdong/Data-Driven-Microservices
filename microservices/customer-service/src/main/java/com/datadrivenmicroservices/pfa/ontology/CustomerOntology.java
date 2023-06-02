@@ -50,7 +50,7 @@ public class CustomerOntology {
     public void addCustomer(Customer customer){
         File f = new File(customerOntologyFilePath);
         Model model = readOntologyFromFile(f);
-        model.createResource(customerBaseUri+"/customer/"+customer.getCustomerId())
+        model.createResource(customerBaseUri+"/"+customer.getCustomerId())
                 .addProperty(RDF.type, model.getResource(customerBaseUri))
                 .addProperty(model.getProperty(customerBaseUri+"#customerFirstName"), customer.getCustomerFirstName())
                 .addProperty(model.getProperty(customerBaseUri+"#customerLastName"), customer.getCustomerLastName())
@@ -63,7 +63,7 @@ public class CustomerOntology {
         File f = new File(customerOntologyFilePath);
         Model model = readOntologyFromFile(f);
         for (Customer customer : customerList) {
-            model.createResource(customerBaseUri+"/customer/"+customer.getCustomerId())
+            model.createResource(customerBaseUri+"/"+customer.getCustomerId())
                     .addProperty(RDF.type, model.getResource(customerBaseUri))
                     .addProperty(model.getProperty(customerBaseUri+"#customerFirstName"), customer.getCustomerFirstName())
                     .addProperty(model.getProperty(customerBaseUri+"#customerLastName"), customer.getCustomerLastName())
