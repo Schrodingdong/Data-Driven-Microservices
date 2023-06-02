@@ -11,9 +11,11 @@ import java.util.List;
 @AllArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final CustomerOntologyService customerOntologyService;
 
     public Customer saveCustomer(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
+        customerOntologyService.addOntologyInstance(savedCustomer);
         return savedCustomer;
     }
 
@@ -37,15 +39,15 @@ public class CustomerService {
         if(customer.getCustomerEmail() != null) existingCustomer.setCustomerEmail(customer.getCustomerEmail());
         if(customer.getCustomerRegistrationDate() != null) existingCustomer.setCustomerRegistrationDate(customer.getCustomerRegistrationDate());
         Customer updatedCustomer = customerRepository.save(existingCustomer);
+        customerOntologyService.init(); // rebuild the RDF file after updating the product
         return updatedCustomer;
     }
 
     public boolean deleteCustomer(Long customerId) {
         Customer existingCustomer = customerRepository.findById(customerId).orElse(null);
-        if (existingCustomer == null) {
-            return false;
-        }
+        if (existingCustomer == null) return false;
         customerRepository.deleteById(customerId);
+        customerOntologyService.init(); // rebuild the RDF file after deleting the product
         return true;
     }
 }
