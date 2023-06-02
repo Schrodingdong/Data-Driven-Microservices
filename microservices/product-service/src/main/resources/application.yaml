@@ -1,0 +1,8 @@
+server:
+  port: 9090
+
+
+rdf:
+  product:
+    base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/Product
+    file-path: src/main/resources/product.rdf
