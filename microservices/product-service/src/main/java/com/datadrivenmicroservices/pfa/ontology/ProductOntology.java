@@ -49,7 +49,7 @@ public class ProductOntology {
     public void addProduct(Product product) {
         File f = new File(productOntologyFilePath);
         Model model = readOntologyFromFile(f);
-        model.createResource(productBaseUri + "/product/" + product.getId())
+        model.createResource(productBaseUri + "/" + product.getId())
                 .addProperty(RDF.type, model.getResource(productBaseUri))
                 .addProperty(model.getProperty(productBaseUri + "#productName"), product.getProductName())
                 .addProperty(model.getProperty(productBaseUri + "#productDescription"), product.getProductDescription())
@@ -61,7 +61,7 @@ public class ProductOntology {
         File f = new File(productOntologyFilePath);
         Model model = readOntologyFromFile(f);
         for (Product product : productList) {
-            model.createResource(productBaseUri + "/product/" + product.getId())
+            model.createResource(productBaseUri + "/" + product.getId())
                     .addProperty(RDF.type, model.getResource(productBaseUri))
                     .addProperty(model.getProperty(productBaseUri + "#productName"), product.getProductName())
                     .addProperty(model.getProperty(productBaseUri + "#productDescription"), product.getProductDescription())
