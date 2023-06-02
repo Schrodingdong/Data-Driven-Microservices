@@ -4,10 +4,7 @@ import com.datadrivenmicroservices.ontologicaldiscoveryservice.service.OntologyD
 import lombok.AllArgsConstructor;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
@@ -16,8 +13,10 @@ public class OntologyDiscoveryController {
     private final OntologyDiscoveryService ontologyDiscoveryService;
 
     @PostMapping
-    public ResponseEntity<?> routeAndReturn(Object request){
-        return ontologyDiscoveryService.routeAndReturn(request);
+    public ResponseEntity<?> routeAndReturn(@RequestBody String request){
+        System.out.println(request);
+        ontologyDiscoveryService.routeAndReturn(request);
+        return ResponseEntity.ok().body(request);
     }
 
 }

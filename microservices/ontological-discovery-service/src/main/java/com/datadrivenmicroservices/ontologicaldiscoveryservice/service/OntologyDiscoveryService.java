@@ -13,15 +13,16 @@ public class OntologyDiscoveryService {
     private final OntologyMatching ontologyMatching;
     private final RoutingUtils routingUtils;
 
-    public ResponseEntity<?> routeAndReturn(Object requestObject){
+    public ResponseEntity<?> routeAndReturn(String requestString){
         // ontological matching
-        String routeName = ontologyMatching.matchRequestWithOntology("request");
+        String routeName = ontologyMatching.matchRequestWithOntology(requestString);
 
         // Return URL for routing
         String routeUrl = routingUtils.getRouteUrlFromName(routeName);
 
         // delegate work to inner gateway
-        RequestEntity<?> requestEntity = RequestEntity.post(routeUrl).body(requestObject);
+        RequestEntity<?> requestEntity = RequestEntity.post("http://localhost").body(requestString);
+        System.out.println(requestEntity);
         routingUtils.routeToUrl(requestEntity);
 
         return null;

@@ -1,5 +1,8 @@
 package com.datadrivenmicroservices.ontologicaldiscoveryservice.ontology;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class OntologyMatching {
 
     /**
