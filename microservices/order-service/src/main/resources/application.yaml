@@ -6,6 +6,10 @@ rdf:
   order:
     base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/order
     file-path: src/main/resources/order.rdf
+  product:
+    base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/product
+  customer:
+    base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/customer
 spring:
   jpa:
     show-sql: true

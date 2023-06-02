@@ -12,10 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final OrderProductRepository orderProductRepository;
+    private final OrderOntologyService orderOntologyService;
 
     public OrderEntity saveOrder(OrderEntity order) {
         OrderEntity savedOrder = orderRepository.save(order);
+        orderOntologyService.addOntologyInstance(savedOrder);
         return savedOrder;
     }
 
@@ -40,6 +41,7 @@ public class OrderService {
         if(existingOrder == null) return null;
         if(existingOrder.getOrderProducts() != null) existingOrder.setOrderProducts(order.getOrderProducts());
         OrderEntity savedOrder = orderRepository.save(existingOrder);
+        orderOntologyService.init();
         return savedOrder;
     }
 
@@ -47,6 +49,7 @@ public class OrderService {
         OrderEntity existingOrder = orderRepository.findById(orderId).orElse(null);
         if(existingOrder == null) return false;
         orderRepository.delete(existingOrder);
+        orderOntologyService.init();
         return true;
     }
 }
