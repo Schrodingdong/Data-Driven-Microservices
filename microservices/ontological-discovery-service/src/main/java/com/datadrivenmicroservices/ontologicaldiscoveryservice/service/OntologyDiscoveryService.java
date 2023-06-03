@@ -2,29 +2,28 @@ package com.datadrivenmicroservices.ontologicaldiscoveryservice.service;
 
 import com.datadrivenmicroservices.ontologicaldiscoveryservice.ontology.OntologyMatching;
 import com.datadrivenmicroservices.ontologicaldiscoveryservice.routing.RoutingUtils;
-import lombok.AllArgsConstructor;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
-@AllArgsConstructor
 public class OntologyDiscoveryService {
     private final OntologyMatching ontologyMatching;
     private final RoutingUtils routingUtils;
 
-    public ResponseEntity<?> routeAndReturn(String requestString){
-        // ontological matching
-        String routeName = ontologyMatching.matchRequestWithOntology(requestString);
+    public OntologyDiscoveryService(OntologyMatching ontologyMatching, RoutingUtils routingUtils) {
+        this.ontologyMatching = ontologyMatching;
+        this.routingUtils = routingUtils;
+    }
 
-        // Return URL for routing
-        String routeUrl = routingUtils.getRouteUrlFromName(routeName);
+    public String routeAndReturn(String requestBody, String requestMethod, Map<String, String> requestParams){
+        // ontological matching
+        String routeName = ontologyMatching.matchRequestWithOntology(requestBody);
+
+        // Return uri for routing
+        String uri = routingUtils.getRouteUrlFromName(routeName, requestBody, requestMethod, requestParams);
 
         // delegate work to inner gateway
-        RequestEntity<?> requestEntity = RequestEntity.post("http://localhost").body(requestString);
-        System.out.println(requestEntity);
-        routingUtils.routeToUrl(requestEntity);
-
-        return null;
+        return routingUtils.routeToUrl(uri, requestBody, requestMethod);
     }
 }

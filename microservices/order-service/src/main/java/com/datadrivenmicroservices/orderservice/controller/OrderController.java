@@ -20,7 +20,7 @@ public class OrderController {
         return ResponseEntity.ok().body(savedOrder);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<?> updateOrder(@RequestBody OrderEntity order){
         OrderEntity savedOrder = orderService.updateOrder(order);
         return ResponseEntity.ok().body(savedOrder);

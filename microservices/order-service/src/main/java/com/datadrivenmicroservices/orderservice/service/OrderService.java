@@ -27,7 +27,6 @@ public class OrderService {
 
     public List<OrderEntity> getOrders(){
         List<OrderEntity> orderList = orderRepository.findAll();
-        System.out.println(orderList.get(0));
         return orderList;
     }
 

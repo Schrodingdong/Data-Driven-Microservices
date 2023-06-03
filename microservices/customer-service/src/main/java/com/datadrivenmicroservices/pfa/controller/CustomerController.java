@@ -33,7 +33,7 @@ public class CustomerController {
         return ResponseEntity.ok().body(customers);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<?> updateCustomer(@RequestBody Customer customer) {
         Customer updatedCustomer = customerService.updateCustomer(customer);
         return ResponseEntity.ok().body(updatedCustomer);

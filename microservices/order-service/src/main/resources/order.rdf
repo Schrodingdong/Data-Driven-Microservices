@@ -13,16 +13,14 @@
     <rdfs:range>http://www.datadrivenmicroservices.com/pfa/ontology/customer</rdfs:range>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/order/1">
-    <j.0:forCustomer>http://www.datadrivenmicroservices.com/pfa/ontology/customer69</j.0:forCustomer>
-    <j.0:orderCreationDate>2023-06-02T05:44:43.109759Z</j.0:orderCreationDate>
-    <rdf:type>http://www.datadrivenmicroservices.com/pfa/ontology/order</rdf:type>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/order/2">
-    <j.0:hasProduct>http://www.datadrivenmicroservices.com/pfa/ontology/product/56</j.0:hasProduct>
-    <j.0:hasProduct>http://www.datadrivenmicroservices.com/pfa/ontology/product/50</j.0:hasProduct>
+    <j.0:hasProduct>http://www.datadrivenmicroservices.com/pfa/ontology/product/553</j.0:hasProduct>
     <j.0:forCustomer>http://www.datadrivenmicroservices.com/pfa/ontology/customer50</j.0:forCustomer>
-    <j.0:orderCreationDate>2023-06-02T05:45:08.788198Z</j.0:orderCreationDate>
-    <rdf:type>http://www.datadrivenmicroservices.com/pfa/ontology/order</rdf:type>
+    <j.0:orderCreationDate>2023-06-03T14:52:05.900651Z</j.0:orderCreationDate>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/order/3">
+    <j.0:hasProduct>http://www.datadrivenmicroservices.com/pfa/ontology/product/69</j.0:hasProduct>
+    <j.0:forCustomer>http://www.datadrivenmicroservices.com/pfa/ontology/customer63</j.0:forCustomer>
+    <j.0:orderCreationDate>2023-06-03T14:55:42.168344Z</j.0:orderCreationDate>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/order#orderCreationDate">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>

@@ -13,13 +13,25 @@
     <rdfs:domain rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/4">
+    <j.0:productPrice>23.05</j.0:productPrice>
+    <j.0:productDescription>hadsqdha</j.0:productDescription>
+    <j.0:productName>lmdsqdqsdqsaoo</j.0:productName>
+    <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product">
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/3">
+    <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
+    <j.0:productName>lmaoo</j.0:productName>
+    <j.0:productDescription>haha</j.0:productDescription>
+    <j.0:productPrice>23.0</j.0:productPrice>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/2">
     <j.0:productPrice>23.0</j.0:productPrice>
-    <j.0:productDescription>waeuh botl mmm</j.0:productDescription>
-    <j.0:productName>ain sais</j.0:productName>
+    <j.0:productDescription>chicolat</j.0:productDescription>
+    <j.0:productName>kitakat</j.0:productName>
     <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product#productName">
@@ -29,8 +41,8 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/1">
     <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
-    <j.0:productName>Kitkat</j.0:productName>
-    <j.0:productDescription>chocolate bar mmm</j.0:productDescription>
-    <j.0:productPrice>69.23</j.0:productPrice>
+    <j.0:productName>chips</j.0:productName>
+    <j.0:productDescription>chips</j.0:productDescription>
+    <j.0:productPrice>23.0</j.0:productPrice>
   </rdf:Description>
 </rdf:RDF>
