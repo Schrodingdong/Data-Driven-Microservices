@@ -1,11 +1,13 @@
 package com.datadrivenmicroservices.pfa.ontology;
 
+import com.datadrivenmicroservices.pfa.messaging.MessageProducer;
 import com.datadrivenmicroservices.pfa.model.Product;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.VCARD;
 import org.apache.jena.vocabulary.XSD;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class ProductOntology {
     private String productBaseUri;
     @Value("${rdf.product.file-path}")
     private String productOntologyFilePath;
+    @Autowired
+    private MessageProducer rabbitMessageProducer;
+
 
     /**
      * To do at startup
@@ -75,6 +80,7 @@ public class ProductOntology {
         try {
             FileOutputStream out = new FileOutputStream(f);
             model.write(out);
+            rabbitMessageProducer.sendRdfFile();
         } catch (FileNotFoundException e) {
             System.err.println("File not found : " + e.getMessage());
             // create file and retry

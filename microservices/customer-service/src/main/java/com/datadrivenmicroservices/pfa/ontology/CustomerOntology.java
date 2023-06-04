@@ -1,5 +1,6 @@
 package com.datadrivenmicroservices.pfa.ontology;
 
+import com.datadrivenmicroservices.pfa.messaging.MessageProducer;
 import com.datadrivenmicroservices.pfa.model.Customer;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -7,6 +8,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.XSD;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ public class CustomerOntology {
     private String customerBaseUri;
     @Value("${rdf.customer.file-path}")
     private String customerOntologyFilePath;
+    @Autowired
+    private MessageProducer rabbitMessageProducer;
 
     public Model initialiseModel(){
         // initialise Empty Model
@@ -79,6 +83,7 @@ public class CustomerOntology {
         try {
             FileOutputStream out = new FileOutputStream(f);
             model.write(out);
+            rabbitMessageProducer.sendRdfFile();
         } catch (FileNotFoundException e) {
             System.err.println("File not found : " + e.getMessage());
             // create file and retry

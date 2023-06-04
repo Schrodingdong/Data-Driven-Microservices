@@ -86,16 +86,16 @@ The URLs shall be listed in the application.yaml file, following this structure 
 serviceName :
     Method :
         GET:
-        - url1
+        - uri1 
         ...
         POST:
-        - url1
+        - uri1
         ...
         PUT:
-        - url1
+        - uri1
         ...
         DELETE:
-        - url1
+        - uri1
         ...
 ````
 ### Example 1
@@ -134,7 +134,7 @@ Workflow :
     - Method (POST)
     - Path variable (none)
     - service name (product service)
-  - Generate the url (http://localhost:8082/product/save)
+  - Generate the uri (/product/save)
 
 ### Example 2
 Consider the following request :
@@ -171,7 +171,7 @@ Workflow :
         - Method (PUT)
         - Path variable (none)
         - service name (product service)
-    - Generate the url (http://localhost:8082/product/update)
+    - generate the uri (/product/update)
 
 ### Example 3
 Consider the following request :
@@ -202,4 +202,25 @@ Workflow :
         - Method (GET)
         - Path variable (productId)
         - service name (product service)
-    - Generate the url (http://localhost:8082/product/get/1)
+    - Replace the path variables with their correct value 
+    - generate the uri (/product/get/1)
+
+## Messaging Service
+We will be using RabbitMQ as our messaging service.
+to run it, you can use the following command :
+```shell script
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.11-management
+```
+The management interface is available at http://localhost:15672/ with the default credentials (guest/guest).
+The connection from the services is automatic (as long as the Rabbit MQ port is the same as the one in the cmd)
+### Structure of the messaging system
+Each Business Service has its own queue, that are linked to one exchange. The consumer (OntoogyDiscovery) listens to all the queues and update the .rdf files it has.
+- Exchange : rdf.exchange
+- Queues :
+    - product.rdf.queue
+    - customer.rdf.queue
+    - order.rdf.queue
+- Routing keys :
+    - product.rdf.queue -> product.rdf.key
+    - customer.rdf.queue -> customer.rdf.key
+    - order.rdf.queue -> order.rdf.key

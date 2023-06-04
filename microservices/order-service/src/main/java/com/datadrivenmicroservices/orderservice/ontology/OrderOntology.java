@@ -1,5 +1,6 @@
 package com.datadrivenmicroservices.orderservice.ontology;
 
+import com.datadrivenmicroservices.orderservice.messaging.MessageProducer;
 import com.datadrivenmicroservices.orderservice.model.OrderEntity;
 import com.datadrivenmicroservices.orderservice.model.OrderProductEntity;
 import org.apache.jena.rdf.model.Model;
@@ -8,6 +9,8 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.XSD;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,8 @@ public class OrderOntology {
     private String productBaseUri;
     @Value("${rdf.order.file-path}")
     private String orderOntologyFilePath;
+    @Autowired
+    private MessageProducer rabbitMessageProducer;
 
     public Model initialiseModel(){
         // initialise Empty Model
@@ -87,6 +92,7 @@ public class OrderOntology {
         try {
             FileOutputStream out = new FileOutputStream(f);
             model.write(out);
+            rabbitMessageProducer.sendRdfFile();
         } catch (FileNotFoundException e) {
             System.err.println("File not found : " + e.getMessage());
             // create file and retry

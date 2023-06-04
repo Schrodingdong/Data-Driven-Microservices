@@ -1,6 +1,14 @@
 server:
   port: 8081
 
+rdf:
+  product:
+    file-path: src/main/resources/product.rdf
+  customer:
+    file-path: src/main/resources/customer.rdf
+  order:
+    file-path: src/main/resources/order.rdf
+
 route-matcher:
   base-url: http://localhost:8082
   services:

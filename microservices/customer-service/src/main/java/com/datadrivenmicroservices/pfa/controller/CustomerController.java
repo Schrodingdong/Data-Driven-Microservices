@@ -1,12 +1,15 @@
 package com.datadrivenmicroservices.pfa.controller;
 
+import com.datadrivenmicroservices.pfa.messaging.MQConfig;
 import com.datadrivenmicroservices.pfa.model.Customer;
 import com.datadrivenmicroservices.pfa.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.apache.catalina.LifecycleState;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
 import java.util.List;
 
 @RestController
@@ -14,6 +17,23 @@ import java.util.List;
 @AllArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
+    private final RabbitTemplate rabbitTemplate;
+
+    @GetMapping("/test-rabbit")
+    public ResponseEntity<?> testRabbit() throws IOException {
+        File f = new File("src/main/resources/customer.rdf");
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+        String line;
+        String xml = "";
+        while ((line = br.readLine()) != null){
+            xml += line;
+        }
+        System.out.println(xml);
+
+        rabbitTemplate.convertAndSend(MQConfig.RDF_EXCHANGE, MQConfig.CUSTOMER_RDF_ROUTING_KEY, xml);
+        return ResponseEntity.ok().body("RabbitMQ Test");
+    }
+
 
     @PostMapping("/save")
     public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {

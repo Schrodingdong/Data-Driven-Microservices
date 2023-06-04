@@ -1,11 +1,15 @@
 package com.datadrivenmicroservices.orderservice.controller;
 
+import com.datadrivenmicroservices.orderservice.messaging.MQConfig;
 import com.datadrivenmicroservices.orderservice.model.OrderEntity;
 import com.datadrivenmicroservices.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.boot.autoconfigure.jms.activemq.ActiveMQConnectionFactoryCustomizer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
 import java.util.List;
 
 @RestController
@@ -13,6 +17,23 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderController {
     private final OrderService orderService;
+    private final RabbitTemplate rabbitTemplate;
+
+    @GetMapping("/test-rabbit")
+    public ResponseEntity<?> testRabbit() throws IOException {
+        File f = new File("src/main/resources/order.rdf");
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+        String line;
+        String xml = "";
+        while ((line = br.readLine()) != null){
+            xml += line;
+        }
+        System.out.println(xml);
+
+        rabbitTemplate.convertAndSend(MQConfig.RDF_EXCHANGE, MQConfig.ORDER_RDF_ROUTING_KEY, xml);
+        return ResponseEntity.ok().body("RabbitMQ Test");
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity<?> createOrder(@RequestBody OrderEntity order){
