@@ -118,7 +118,7 @@ public class OntologyDiscoveryController {
             String paramValue = request.getParameterValues(paramName)[0];
             requestParams.put(paramName, paramValue);
         }
-        System.out.println(requestParams);
+        System.out.println("[CONTROLLER] requestParams = " + requestParams);
         return requestParams;
     }
 }

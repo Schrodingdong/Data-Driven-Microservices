@@ -1,7 +1,10 @@
 # Ontological Discovery Service
 ## Possible Urls
 - localhost:8080
-- localhost:8080/?productId=69
+- localhost:8080/?products (get all of them)
+- localhost:8080/?customers
+- localhost:8080/?orders
+- localhost:8080/?productId=69 (get the product with the given id)
 - localhost:8080/?customerId=45
 - localhost:8080/?orderId=150
 

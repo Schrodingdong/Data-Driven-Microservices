@@ -20,7 +20,7 @@ route-matcher:
         POST:
           - /product/save
         PUT:
-          - /product/update
+          - /product/update/{productId}
         DELETE:
           - /product/delete/{productId}
     customer:
@@ -31,7 +31,7 @@ route-matcher:
         POST:
           - /customer/save
         PUT:
-          - /customer/update
+          - /customer/update/{customerId}
         DELETE:
           - /customer/delete/{customerId}
     order:
@@ -43,6 +43,6 @@ route-matcher:
         POST:
           - /order/create
         PUT:
-          - /order/update
+          - /order/update/{orderId}
         DELETE:
           - /order/delete/{orderId}

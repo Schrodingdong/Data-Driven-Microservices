@@ -13,8 +13,11 @@ public class RoutingUtils {
     private final InnerGatewayWebClient innerGatewayWebClient;
     private final RoutingUrls routingUrls;
     public String getRouteUrlFromName(String serviceName, String requestBody, String requestMethod, Map<String,String> requestParams){
-        serviceName = "order";
         String filteredUrl = "";
+        System.out.println("[RoutingUtils] serviceName = " + serviceName);
+        System.out.println("[RoutingUtils] requestMethod = " + requestMethod);
+        System.out.println("[RoutingUtils] requestParams = " + requestParams);
+        System.out.println("[RoutingUtils] requestBody = " + requestBody);
         List<String> urlList = routingUrls.getUrlsForAServiceAndMethod(serviceName, requestMethod);
 
         // if there is only one url, return it
@@ -27,8 +30,11 @@ public class RoutingUtils {
             } else {
                 for (Map.Entry<String, String> entry : requestParams.entrySet()) {
                     String key = entry.getKey();
-                    String value = entry.getValue();
-                    filteredUrl = urlList.stream().filter(url -> url.contains(key)).findFirst().orElse("");
+                    if (key.contains("id") || key.contains("Id") || key.contains("ID")) {
+                        filteredUrl = urlList.stream().filter(url -> url.contains(key)).findFirst().orElse("");
+                    } else {
+                        filteredUrl = urlList.stream().findFirst().orElse("");
+                    }
                 }
             }
         }

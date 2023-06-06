@@ -1,0 +1,98 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:j.0="http://www.datadrivenmicroservices.com/pfa/ontology/customer#" xmlns:j.1="http://www.datadrivenmicroservices.com/pfa/ontology/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+       
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer/3">
+            
+        <j.0:customerEmail>test@teseaeazt.com</j.0:customerEmail>
+            
+        <j.0:customerLastName>lastname3</j.0:customerLastName>
+            
+        <j.0:customerFirstName>name3</j.0:customerFirstName>
+            
+        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/customer"/>
+          
+    </rdf:Description>
+      
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer/4">
+            
+        <j.0:customerEmail>test@teseaeazt.com</j.0:customerEmail>
+            
+        <j.0:customerLastName>lastname3</j.0:customerLastName>
+            
+        <j.0:customerFirstName>name3</j.0:customerFirstName>
+            
+        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/customer"/>
+          
+    </rdf:Description>
+      
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer/5">
+            
+        <j.0:customerEmail>test@teseaeazt.com</j.0:customerEmail>
+            
+        <j.0:customerLastName>lastname3</j.0:customerLastName>
+            
+        <j.0:customerFirstName>name3</j.0:customerFirstName>
+            
+        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/customer"/>
+          
+    </rdf:Description>
+      
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer/1">
+            
+        <j.0:customerEmail>test@teseaeazt.com</j.0:customerEmail>
+            
+        <j.0:customerLastName>lastname3</j.0:customerLastName>
+            
+        <j.0:customerFirstName>name3</j.0:customerFirstName>
+            
+        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/customer"/>
+          
+    </rdf:Description>
+      
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer/2">
+            
+        <j.0:customerEmail>newMail@gmail.com</j.0:customerEmail>
+            
+        <j.0:customerLastName>new lastname</j.0:customerLastName>
+            
+        <j.0:customerFirstName>name3</j.0:customerFirstName>
+            
+        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/customer"/>
+          
+    </rdf:Description>
+      
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer#customerLastName">
+            
+        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+            
+        <rdfs:domain rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/customer"/>
+            
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+          
+    </rdf:Description>
+      
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer">
+            
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+          
+    </rdf:Description>
+      
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer#customerEmail">
+            
+        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+            
+        <rdfs:domain rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/customer"/>
+            
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+          
+    </rdf:Description>
+      
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/customer#customerFirstName">
+            
+        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+            
+        <rdfs:domain rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/customer"/>
+            
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+          
+    </rdf:Description>
+</rdf:RDF>

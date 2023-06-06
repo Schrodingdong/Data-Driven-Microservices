@@ -2,6 +2,7 @@ package com.datadrivenmicroservices.ontologicaldiscoveryservice.ontology;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,26 +19,18 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 
-@Service
-public class OntologyMatching {
-
-    /**
+/**
  * Match the request with the right ontology
  * */
-    static OntologyMatching ontologyMatching = new OntologyMatching();
-
-
-
-    //main for testing purpose
-    public static void main(String[] args ){
-
-        //ontologyMatching.parseAndExtractKeywords("C:\\Users\\hp\\Desktop\\Data-Driven-Microservices\\microservices\\ontological-discovery-service\\src\\main\\resources\\customer-sample.rdf");
-        String jsonString = "{\"customerFirstName\": \"John Doe\", \"customerLastName\": 30, \"customerEmail\": \"New York\", \"customerRegistrationDate\":\"idk\"}";
-        //System.out.println(ontologyMatching.getKeysFromJsonString(jsonString));
-        System.out.println(ontologyMatching.matchRequestWithOntology(jsonString));
-    }
-
-
+@Service
+public class OntologyMatching {
+    public static final List<String> ONTOLOGY_LIST = Arrays.asList("customer", "order", "product");
+    @Value("${rdf.product.file-path}")
+    private String productOntologyPath;
+    @Value("${rdf.customer.file-path}")
+    private String customerOntologyPath;
+    @Value("${rdf.order.file-path}")
+    private String orderOntologyPath;
 
 
     //get keywords of the request
@@ -121,41 +114,71 @@ public class OntologyMatching {
 
 
 
-    public String matchRequestWithOntology(String jsonRequest){
-        //List<File> fileCollection = new ArrayList<>();
-
+    public String matchRequestWithOntology(String jsonRequest, Map<String, String> requestParams, String requestMethod){
+        if (jsonRequest.equals("{}")) {
+            // meaning it's either a get or a delete request
+            // we will have to analyse the request params
+            // and match them with the right ontology
+            String key = (String) requestParams.keySet().toArray()[0];
+            String value = requestParams.get(key);
+            System.out.println("key: " + key + " value: " + value);
+            if(requestMethod.equals("GET") || requestMethod.equals("DELETE")){
+                for (String s : ONTOLOGY_LIST){
+                    if(key.contains(s)) return s;
+                }
+            }
+            return "";
+        }
         Map<String, File> fileCollection = new HashMap<>();
         Map<String, HashSet<String>> filesKeywords = new HashMap<>();
 
         // get the collection of relevant keywords of the request
         HashSet<String> requestKeys = getKeysFromJsonString(jsonRequest);
+        System.out.println('[' + String.join(", ", requestKeys) + ']');
 
         // get the collection of relevant keywords for each ontology
-        File customerOntology = new File("src\\main\\resources\\customer-sample.rdf");
-        File productOntology = new File("src\\main\\resources\\product-sample.rdf");
-        File orderOntology = new File("src\\main\\resources\\order-sample.rdf");
+        File customerOntology = new File(customerOntologyPath);
+        File productOntology = new File(productOntologyPath);
+        File orderOntology = new File(orderOntologyPath);
 
         fileCollection.put("customer", customerOntology);
         fileCollection.put("product",productOntology);
         fileCollection.put("order", orderOntology);
-
-
-
 
         //map the keywords sets with the according service [fileCollection contains the RDF files with their service names]
         for (Map.Entry<String, File> entry : fileCollection.entrySet()) {
             filesKeywords.put(entry.getKey(), parseAndExtractKeywords(entry.getValue()));
         }
 
-
-
         //compare the two collections
+        Map<String, Integer> scoreMap = new HashMap<>();
+        scoreMap.put("customer", 0);
+        scoreMap.put("product", 0);
+        scoreMap.put("order", 0);
         for(Map.Entry<String, HashSet<String>> entry : filesKeywords.entrySet()){
+            System.out.println("[OntologyMatching] - [ " + entry.getKey() + " : " + entry.getValue() + " ]");
            if( entry.getValue().equals(requestKeys)){
                return entry.getKey(); //return the service name that has a matching ontology
+           } else {
+//               System.out.println("[OntologyMatching] - does contain the request keys" + entry.getValue().contains(requestKeys));
+                for(String s : entry.getValue()){
+                     if(requestKeys.contains(s)){
+                          scoreMap.put(entry.getKey(), scoreMap.get(entry.getKey()) + 1);
+                     }
+                }
            }
         }
+        System.out.println("[OntologyMatching] - scoreMap: " + scoreMap);
+        int max = 0;
+        String maxKey = "";
+        for(Map.Entry<String, Integer> entry : scoreMap.entrySet()){
+            if(entry.getValue() > max){
+                max = entry.getValue();
+                maxKey = entry.getKey();
+            }
+        }
+        if(maxKey != "") return maxKey;
 
-        return "no service has an ontology that matches the request";
+        return "";
     }
 }

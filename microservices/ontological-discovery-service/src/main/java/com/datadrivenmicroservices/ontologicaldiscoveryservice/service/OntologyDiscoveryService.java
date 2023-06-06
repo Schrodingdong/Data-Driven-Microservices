@@ -17,11 +17,13 @@ public class OntologyDiscoveryService {
     }
 
     public String routeAndReturn(String requestBody, String requestMethod, Map<String, String> requestParams){
-        // ontological matching
-        String routeName = ontologyMatching.matchRequestWithOntology(requestBody);
-
+        // ontological matching on body
+        if (requestBody.isEmpty()) requestBody = "{}";
+        String routeName = ontologyMatching.matchRequestWithOntology(requestBody, requestParams, requestMethod);
+        System.out.println("routeName = " + routeName);
         // Return uri for routing
         String uri = routingUtils.getRouteUrlFromName(routeName, requestBody, requestMethod, requestParams);
+        System.out.println("uri = " + uri);
 
         // delegate work to inner gateway
         return routingUtils.routeToUrl(uri, requestBody, requestMethod);

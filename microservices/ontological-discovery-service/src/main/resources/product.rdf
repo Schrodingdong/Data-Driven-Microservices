@@ -1,70 +1,34 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:j.0="http://www.datadrivenmicroservices.com/pfa/ontology/Product#" xmlns:j.1="http://www.datadrivenmicroservices.com/pfa/ontology/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
        
-    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/8">
-            
-        <j.0:productPrice>23.0</j.0:productPrice>
-            
-        <j.0:productDescription>chicolat</j.0:productDescription>
-            
-        <j.0:productName>kitakat</j.0:productName>
-            
-        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
-          
-    </rdf:Description>
-      
     <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product#productPrice">
             
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
             
         <rdfs:domain rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
             
-        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-          
-    </rdf:Description>
-      
-    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/7">
-            
-        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
-            
-        <j.0:productName>kitakat</j.0:productName>
-            
-        <j.0:productDescription>chicolat</j.0:productDescription>
-            
-        <j.0:productPrice>23.0</j.0:productPrice>
-          
-    </rdf:Description>
-      
-    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/6">
-            
-        <j.0:productPrice>23.0</j.0:productPrice>
-            
-        <j.0:productDescription>chicolat</j.0:productDescription>
-            
-        <j.0:productName>kitakat</j.0:productName>
-            
-        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
           
     </rdf:Description>
       
     <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product#productDescription">
             
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
             
         <rdfs:domain rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
             
-        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
           
     </rdf:Description>
       
     <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/5">
             
-        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
-            
-        <j.0:productName>kitakat</j.0:productName>
+        <j.0:productPrice>23.0</j.0:productPrice>
             
         <j.0:productDescription>chicolat</j.0:productDescription>
             
-        <j.0:productPrice>23.0</j.0:productPrice>
+        <j.0:productName>kitakat</j.0:productName>
+            
+        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
           
     </rdf:Description>
       
@@ -88,23 +52,13 @@
       
     <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/3">
             
-        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
-            
-        <j.0:productName>kitakat</j.0:productName>
+        <j.0:productPrice>23.0</j.0:productPrice>
             
         <j.0:productDescription>chicolat</j.0:productDescription>
             
-        <j.0:productPrice>23.0</j.0:productPrice>
-          
-    </rdf:Description>
-      
-    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product#productName">
+        <j.0:productName>kitakat</j.0:productName>
             
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-            
-        <rdfs:domain rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
-            
-        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
           
     </rdf:Description>
       
@@ -120,15 +74,25 @@
           
     </rdf:Description>
       
+    <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product#productName">
+            
+        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+            
+        <rdfs:domain rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
+            
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+          
+    </rdf:Description>
+      
     <rdf:Description rdf:about="http://www.datadrivenmicroservices.com/pfa/ontology/Product/1">
             
-        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
-            
-        <j.0:productName>kitakat</j.0:productName>
+        <j.0:productPrice>420.69</j.0:productPrice>
             
         <j.0:productDescription>chicolat</j.0:productDescription>
             
-        <j.0:productPrice>23.0</j.0:productPrice>
+        <j.0:productName>kitakat</j.0:productName>
+            
+        <rdf:type rdf:resource="http://www.datadrivenmicroservices.com/pfa/ontology/Product"/>
           
     </rdf:Description>
 </rdf:RDF>
