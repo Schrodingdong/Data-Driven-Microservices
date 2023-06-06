@@ -36,10 +36,10 @@ public class OrderOntology {
         // initialise Schema
         Resource order = model.createResource(this.orderBaseUri)
                 .addProperty(RDF.type, RDFS.Class);
-        Resource orderCreationDate = model.createResource(this.orderBaseUri+ "#orderCreationDate")
-                .addProperty(RDF.type, RDF.Property)
-                .addProperty(RDFS.domain, order)
-                .addProperty(RDFS.range, XSD.date);
+//        Resource orderCreationDate = model.createResource(this.orderBaseUri+ "#orderCreationDate")
+//                .addProperty(RDF.type, RDF.Property)
+//                .addProperty(RDFS.domain, order)
+//                .addProperty(RDFS.range, XSD.date);
         Resource forCustomer = model.createResource(this.orderBaseUri+ "#forCustomer")
                 .addProperty(RDF.type, RDF.Property)
                 .addProperty(RDFS.domain, order)
@@ -56,11 +56,11 @@ public class OrderOntology {
         File f = new File(orderOntologyFilePath);
         Model model = readOntologyFromFile(f);
         model.createResource(orderBaseUri + "/" + order.getOrderId())
-                .addProperty(model.getProperty(orderBaseUri + "#orderCreationDate"), order.getOrderCreationDate().toString())
-                .addProperty(model.getProperty(orderBaseUri + "#forCustomer"), customerBaseUri + order.getCustomerId());
+//                .addProperty(model.getProperty(orderBaseUri + "#orderCreationDate"), order.getOrderCreationDate().toString())
+                .addProperty(model.getProperty(orderBaseUri + "#forCustomer"), customerBaseUri + order.getForCustomer());
 
         // loop on each product and add it to the order
-        List<OrderProductEntity> orderProducts = order.getOrderProducts();
+        List<OrderProductEntity> orderProducts = order.getHasProduct();
         for(OrderProductEntity orderProduct : orderProducts){
             model.getResource(orderBaseUri + "/" + order.getOrderId())
                     .addProperty(model.getProperty(orderBaseUri + "#hasProduct"), productBaseUri + "/" + orderProduct.getProductId());
@@ -73,11 +73,11 @@ public class OrderOntology {
         Model model = readOntologyFromFile(f);
         for(OrderEntity order : orders){
             model.createResource(orderBaseUri + "/" + order.getOrderId())
-                    .addProperty(model.getProperty(orderBaseUri + "#orderCreationDate"), order.getOrderCreationDate().toString())
-                    .addProperty(model.getProperty(orderBaseUri + "#forCustomer"), customerBaseUri + order.getCustomerId());
+//                    .addProperty(model.getProperty(orderBaseUri + "#orderCreationDate"), order.getOrderCreationDate().toString())
+                    .addProperty(model.getProperty(orderBaseUri + "#forCustomer"), customerBaseUri + order.getHasProduct());
 
             // loop on each product and add it to the order
-            List<OrderProductEntity> orderProducts = order.getOrderProducts();
+            List<OrderProductEntity> orderProducts = order.getHasProduct();
             for(OrderProductEntity orderProduct : orderProducts){
                 model.getResource(orderBaseUri + "/" + order.getOrderId())
                         .addProperty(model.getProperty(orderBaseUri + "#hasProduct"), productBaseUri + "/" + orderProduct.getProductId());

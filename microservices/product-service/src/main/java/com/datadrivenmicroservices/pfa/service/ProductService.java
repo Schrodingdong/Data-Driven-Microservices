@@ -1,6 +1,5 @@
 package com.datadrivenmicroservices.pfa.service;
 
-import com.datadrivenmicroservices.pfa.ProductServiceApplication;
 import com.datadrivenmicroservices.pfa.model.Product;
 import com.datadrivenmicroservices.pfa.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -29,9 +28,9 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product updateProduct(Product product){
+    public Product updateProduct(Product product, Long productId){
         // TODO : update ontology
-        Product existingProduct = productRepository.findById(product.getId()).orElse(null);
+        Product existingProduct = productRepository.findById(productId).orElse(null);
         if(existingProduct == null){
             return null;
         }

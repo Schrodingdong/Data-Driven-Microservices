@@ -31,14 +31,14 @@ public class OrderService {
     }
 
     public List<OrderEntity> getOrderByCustomerId(Long customerId){
-        List<OrderEntity> orderList = orderRepository.findByCustomerId(customerId);
+        List<OrderEntity> orderList = orderRepository.findByForCustomer(customerId);
         return orderList;
     }
 
-    public OrderEntity updateOrder(OrderEntity order) {
-        OrderEntity existingOrder = orderRepository.findById(order.getOrderId()).orElse(null);
+    public OrderEntity updateOrder(OrderEntity order, long orderId) {
+        OrderEntity existingOrder = orderRepository.findById(orderId).orElse(null);
         if(existingOrder == null) return null;
-        if(existingOrder.getOrderProducts() != null) existingOrder.setOrderProducts(order.getOrderProducts());
+        if(existingOrder.getHasProduct() != null) existingOrder.setHasProduct(order.getHasProduct());
         OrderEntity savedOrder = orderRepository.save(existingOrder);
         orderOntologyService.init();
         return savedOrder;

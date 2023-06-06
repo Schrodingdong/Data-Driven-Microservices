@@ -41,9 +41,9 @@ public class OrderController {
         return ResponseEntity.ok().body(savedOrder);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> updateOrder(@RequestBody OrderEntity order){
-        OrderEntity savedOrder = orderService.updateOrder(order);
+    @PutMapping("/update/{orderId}")
+    public ResponseEntity<?> updateOrder(@RequestBody OrderEntity order, @PathVariable Long orderId){
+        OrderEntity savedOrder = orderService.updateOrder(order, orderId);
         return ResponseEntity.ok().body(savedOrder);
     }
 

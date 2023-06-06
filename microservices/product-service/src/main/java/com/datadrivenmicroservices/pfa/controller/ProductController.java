@@ -54,15 +54,15 @@ public class ProductController {
         return ResponseEntity.ok().body(productList);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> updateProduct(@RequestBody Product product){
-        Product updatedProduct = productService.updateProduct(product);
+    @PutMapping("/update/{productId}")
+    public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable Long productId){
+        Product updatedProduct = productService.updateProduct(product, productId);
         return ResponseEntity.ok().body(updatedProduct);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id){
-        boolean isDeleted = productService.deleteProduct(id);
+    @DeleteMapping("/delete/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long productId){
+        boolean isDeleted = productService.deleteProduct(productId);
         return ResponseEntity.ok().body(isDeleted);
     }
 }

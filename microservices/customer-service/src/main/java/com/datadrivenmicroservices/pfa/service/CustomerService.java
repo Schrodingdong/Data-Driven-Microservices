@@ -29,8 +29,8 @@ public class CustomerService {
         return customers;
     }
 
-    public Customer updateCustomer(Customer customer) {
-        Customer existingCustomer = customerRepository.findById(customer.getCustomerId()).orElse(null);
+    public Customer updateCustomer(Customer customer, long customerId) {
+        Customer existingCustomer = customerRepository.findById(customerId).orElse(null);
         if (existingCustomer == null) {
             return null;
         }

@@ -43,10 +43,10 @@ public class CustomerOntology {
                 .addProperty(RDF.type, RDF.Property)
                 .addProperty(RDFS.domain, customer)
                 .addProperty(RDFS.range, XSD.xstring);
-        Resource customerRegistrationDate = model.createResource(customerBaseUri+"#customerRegistrationDate")
-                .addProperty(RDF.type, RDF.Property)
-                .addProperty(RDFS.domain, customer)
-                .addProperty(RDFS.range, XSD.date);
+//        Resource customerRegistrationDate = model.createResource(customerBaseUri+"#customerRegistrationDate")
+//                .addProperty(RDF.type, RDF.Property)
+//                .addProperty(RDFS.domain, customer)
+//                .addProperty(RDFS.range, XSD.date);
         writeOntology(model);
         return model;
     }
@@ -58,8 +58,8 @@ public class CustomerOntology {
                 .addProperty(RDF.type, model.getResource(customerBaseUri))
                 .addProperty(model.getProperty(customerBaseUri+"#customerFirstName"), customer.getCustomerFirstName())
                 .addProperty(model.getProperty(customerBaseUri+"#customerLastName"), customer.getCustomerLastName())
-                .addProperty(model.getProperty(customerBaseUri+"#customerEmail"), customer.getCustomerEmail())
-                .addProperty(model.getProperty(customerBaseUri+"#customerRegistrationDate"), customer.getCustomerRegistrationDate().toString());
+                .addProperty(model.getProperty(customerBaseUri+"#customerEmail"), customer.getCustomerEmail());
+//                .addProperty(model.getProperty(customerBaseUri+"#customerRegistrationDate"), customer.getCustomerRegistrationDate().toString());
         writeOntology(model);
     }
 
@@ -71,8 +71,8 @@ public class CustomerOntology {
                     .addProperty(RDF.type, model.getResource(customerBaseUri))
                     .addProperty(model.getProperty(customerBaseUri+"#customerFirstName"), customer.getCustomerFirstName())
                     .addProperty(model.getProperty(customerBaseUri+"#customerLastName"), customer.getCustomerLastName())
-                    .addProperty(model.getProperty(customerBaseUri+"#customerEmail"), customer.getCustomerEmail())
-                    .addProperty(model.getProperty(customerBaseUri+"#customerRegistrationDate"), customer.getCustomerRegistrationDate().toString());
+                    .addProperty(model.getProperty(customerBaseUri+"#customerEmail"), customer.getCustomerEmail());
+//                    .addProperty(model.getProperty(customerBaseUri+"#customerRegistrationDate"), customer.getCustomerRegistrationDate().toString());
         }
         writeOntology(model);
     }

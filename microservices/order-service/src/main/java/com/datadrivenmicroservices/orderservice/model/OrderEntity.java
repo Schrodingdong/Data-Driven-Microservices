@@ -18,9 +18,9 @@ public class OrderEntity {
     private Long orderId;
     @CreatedDate
     private Instant orderCreationDate;
-    private Long customerId;
+    private Long forCustomer;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_order", referencedColumnName = "orderId")
-    private List<OrderProductEntity> orderProducts;
+    private List<OrderProductEntity> hasProduct;
 
 }
