@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Data-Driven-Microservices.iml" filepath="$PROJECT_DIR$/.idea/Data-Driven-Microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/microservices/gateway-service/gateway-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/inner-gateway-service/inner-gateway-service.iml" filepath="$PROJECT_DIR$/microservices/inner-gateway-service/inner-gateway-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/ontological-discovery-service/ontological-discovery-service.iml" filepath="$PROJECT_DIR$/microservices/ontological-discovery-service/ontological-discovery-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/order-service/order-service.iml" filepath="$PROJECT_DIR$/microservices/order-service/order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/product-service/pfa.iml" filepath="$PROJECT_DIR$/microservices/product-service/pfa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/customer-service/pfa (1).iml" filepath="$PROJECT_DIR$/microservices/customer-service/pfa (1).iml" />
+    </modules>
+  </component>
+</project>

@@ -5,7 +5,7 @@ server:
 rdf:
   order:
     base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/order
-    file-path: src/main/resources/order.rdf
+    file-path: order.rdf
   product:
     base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/product
   customer:
@@ -13,3 +13,5 @@ rdf:
 spring:
   jpa:
     show-sql: true
+  rabbitmq:
+    host: rabbitmq

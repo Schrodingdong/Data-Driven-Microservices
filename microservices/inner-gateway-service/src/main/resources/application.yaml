@@ -10,14 +10,14 @@ spring:
     gateway:
       routes:
         - id: product-service-route
-          uri: http://localhost:9090
+          uri: http://product-service:9090
           predicates:
             - Path=/product/**
         - id: customer-service-route
-          uri: http://localhost:9091
+          uri: http://customer-service:9091
           predicates:
             - Path=/customer/**
         - id: order-service-route
-          uri: http://localhost:9092
+          uri: http://order-service:9092
           predicates:
             - Path=/order/**

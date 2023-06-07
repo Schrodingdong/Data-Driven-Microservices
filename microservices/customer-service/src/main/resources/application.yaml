@@ -4,4 +4,7 @@ server:
 rdf:
   customer:
     base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/customer
-    file-path: src/main/resources/customer.rdf
+    file-path: customer.rdf
+spring:
+  rabbitmq:
+    host: rabbitmq

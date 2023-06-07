@@ -1,6 +1,7 @@
 package com.datadrivenmicroservices.pfa.messaging;
 
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,11 +21,9 @@ public class MessageProducer {
         String xml = "";
         try{
             xml = readRdfFile();
-            rabbitTemplate.convertAndSend(
-                    MQConfig.RDF_EXCHANGE,
-                    MQConfig.PRODUCT_RDF_ROUTING_KEY,
-                    xml
-            );
+            sendWorkerRunnable sendWorkerRunnable = new sendWorkerRunnable(rabbitTemplate, xml);
+            Thread thread = new Thread(sendWorkerRunnable);
+            thread.start();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -39,5 +38,22 @@ public class MessageProducer {
             xml += line;
         }
         return xml;
+    }
+}
+
+@AllArgsConstructor
+class sendWorkerRunnable implements Runnable {
+    RabbitTemplate rabbitTemplate;
+    String xml;
+
+    @SneakyThrows
+    @Override
+    public void run() {
+        Thread.sleep(2000);
+        rabbitTemplate.convertAndSend(
+                MQConfig.RDF_EXCHANGE,
+                MQConfig.PRODUCT_RDF_ROUTING_KEY,
+                xml
+        );
     }
 }

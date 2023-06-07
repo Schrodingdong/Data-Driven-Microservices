@@ -1,16 +1,17 @@
 server:
   port: 8081
 
+
 rdf:
   product:
-    file-path: src/main/resources/product.rdf
+    file-path: product.rdf
   customer:
-    file-path: src/main/resources/customer.rdf
+    file-path: customer.rdf
   order:
-    file-path: src/main/resources/order.rdf
+    file-path: order.rdf
 
 route-matcher:
-  base-url: http://localhost:8082
+  base-url: http://inner-gateway-service:8082
   services:
     product:
       method:
@@ -46,3 +47,6 @@ route-matcher:
           - /order/update/{orderId}
         DELETE:
           - /order/delete/{orderId}
+spring:
+  rabbitmq:
+    host: rabbitmq

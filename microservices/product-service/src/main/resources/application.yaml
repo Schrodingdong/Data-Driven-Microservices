@@ -5,4 +5,8 @@ server:
 rdf:
   product:
     base-uri: http://www.datadrivenmicroservices.com/pfa/ontology/Product
-    file-path: src/main/resources/product.rdf
+    file-path: product.rdf
+
+spring:
+  rabbitmq:
+    host: rabbitmq

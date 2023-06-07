@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pfa" />
+        <module name="order-service" />
+        <module name="inner-gateway-service" />
+        <module name="pfa (1)" />
+        <module name="gateway-service" />
+        <module name="ontological-discovery-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Data-Driven-Microservices" target="1.5" />
+      <module name="gateway-service" target="17" />
+      <module name="inner-gateway-service" target="17" />
+      <module name="ontological-discovery-service" target="17" />
+      <module name="order-service" target="17" />
+      <module name="pfa" target="17" />
+      <module name="pfa (1)" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="gateway-service" options="-parameters" />
+      <module name="inner-gateway-service" options="-parameters" />
+      <module name="ontological-discovery-service" options="-parameters" />
+      <module name="order-service" options="-parameters" />
+      <module name="pfa" options="-parameters" />
+      <module name="pfa (1)" options="-parameters" />
+    </option>
+  </component>
+</project>

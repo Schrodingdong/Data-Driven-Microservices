@@ -80,7 +80,6 @@ public class ProductOntology {
         try {
             FileOutputStream out = new FileOutputStream(f);
             model.write(out);
-            rabbitMessageProducer.sendRdfFile();
         } catch (FileNotFoundException e) {
             System.err.println("File not found : " + e.getMessage());
             // create file and retry
@@ -90,6 +89,8 @@ public class ProductOntology {
             } catch (IOException ex) {
                 System.err.println("Error creating file : " + ex.getMessage());
             }
+        } finally {
+            rabbitMessageProducer.sendRdfFile();
         }
     }
 

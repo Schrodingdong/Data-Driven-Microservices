@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.datadrivenmicroservices</groupId>
-    <artifactId>pfa</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>product-service</artifactId>
+    <version>1.0</version>
     <name>product-service</name>
     <description>product-service</description>
     <properties>

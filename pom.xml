@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.datadrivenmicroservices</groupId>
+    <artifactId>datadrivenmicroserviceproject</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>microservices/gateway-service</module>
+        <module>microservices/ontological-discovery-service</module>
+        <module>microservices/inner-gateway-service</module>
+        <module>microservices/customer-service</module>
+        <module>microservices/product-service</module>
+        <module>microservices/order-service</module>
+    </modules>
+</project>
