@@ -40,7 +40,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>4.0.1</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.jena/jena-core -->
         <dependency>
@@ -48,7 +52,7 @@
             <artifactId>jena-core</artifactId>
             <version>4.8.0</version>
         </dependency>
-
+<!--        Messaging-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>

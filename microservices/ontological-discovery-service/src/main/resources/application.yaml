@@ -11,9 +11,10 @@ rdf:
     file-path: order.rdf
 
 route-matcher:
-  base-url: http://inner-gateway-service:8082
+  base-url: lb://inner-gateway-service
   services:
     product:
+      service-name: PRODUCT-SERVICE
       method:
         GET:
           - /product/get
@@ -25,6 +26,7 @@ route-matcher:
         DELETE:
           - /product/delete/{productId}
     customer:
+      service-name: CUSTOMER-SERVICE
       method:
         GET:
           - /customer/get
@@ -36,6 +38,7 @@ route-matcher:
         DELETE:
           - /customer/delete/{customerId}
     order:
+      service-name: ORDER-SERVICE
       method:
         GET:
           - /order/get
@@ -50,3 +53,12 @@ route-matcher:
 spring:
   rabbitmq:
     host: rabbitmq
+  application:
+    name: ontological-discovery-service
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka

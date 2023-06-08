@@ -12,6 +12,8 @@ import java.util.Map;
 @Getter
 public class RoutingUrls {
     // For Products
+    @Value("${route-matcher.services.product.service-name}")
+    private String productServiceName;
     @Value("${route-matcher.services.product.method.GET[0]}")
     private String productGetAllUrl;
     @Value("${route-matcher.services.product.method.GET[1]}")
@@ -24,6 +26,8 @@ public class RoutingUrls {
     private String productDeleteUrl;
 
     // For Customers
+    @Value("${route-matcher.services.customer.service-name}")
+    private String customerServiceName;
     @Value("${route-matcher.services.customer.method.GET[0]}")
     private String customerGetAllUrl;
     @Value("${route-matcher.services.customer.method.GET[1]}")
@@ -36,6 +40,8 @@ public class RoutingUrls {
     private String customerDeleteUrl;
 
     // For Orders
+    @Value("${route-matcher.services.order.service-name}")
+    private String orderServiceName;
     @Value("${route-matcher.services.order.method.GET[0]}")
     private String orderGetAllUrl;
     @Value("${route-matcher.services.order.method.GET[1]}")
@@ -76,6 +82,15 @@ public class RoutingUrls {
 
     public List<String> getUrlsForAServiceAndMethod(String serviceName, String method){
         return getUrlsForAService(serviceName).get(method);
+    }
+
+    public String getServiceName(String serviceName){
+        return switch (serviceName) {
+            case "product" -> productServiceName;
+            case "customer" -> customerServiceName;
+            case "order" -> orderServiceName;
+            default -> null;
+        };
     }
 
     public String getUrlWithInsertedParams(String url, Map<String,String> params){

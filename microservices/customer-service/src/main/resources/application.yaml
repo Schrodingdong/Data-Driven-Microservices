@@ -8,3 +8,14 @@ rdf:
 spring:
   rabbitmq:
     host: rabbitmq
+  cloud:
+    discovery:
+      enabled: true
+  application:
+    name: customer-service
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka

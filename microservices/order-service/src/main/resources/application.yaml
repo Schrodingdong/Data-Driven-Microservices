@@ -15,3 +15,11 @@ spring:
     show-sql: true
   rabbitmq:
     host: rabbitmq
+  application:
+    name: order-service
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka

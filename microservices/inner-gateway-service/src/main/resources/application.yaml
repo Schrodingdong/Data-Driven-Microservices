@@ -2,22 +2,17 @@ server:
   port: 8082
 
 spring:
+  application:
+    name: inner-gateway-service
   cloud:
-    discovery:
-      locator:
-        enabled: true
-        lower-case-service-id: true
     gateway:
-      routes:
-        - id: product-service-route
-          uri: http://product-service:9090
-          predicates:
-            - Path=/product/**
-        - id: customer-service-route
-          uri: http://customer-service:9091
-          predicates:
-            - Path=/customer/**
-        - id: order-service-route
-          uri: http://order-service:9092
-          predicates:
-            - Path=/order/**
+      discovery:
+        locator:
+          enabled: true
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka

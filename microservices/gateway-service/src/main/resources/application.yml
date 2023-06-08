@@ -1,15 +1,17 @@
-
-
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id : r1
-          uri: http://ontological-discovery-service:8081
-          predicates:
-            - Path= /**
-  application:
-    name: gateway-service
 server:
   port: 8080
 
+spring:
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+  application:
+    name: gateway-service
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka

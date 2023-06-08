@@ -12,6 +12,17 @@ services:
       interval: 10s
       retries: 10
 
+  discovery-service:
+    container_name: discovery-service
+    image: discovery-service
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8761" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
 
   # Business logic
   product-service:
@@ -19,8 +30,15 @@ services:
     image: product-service
     ports:
       - "9090:9090"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9090/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     depends_on:
       rabbitmq:
+        condition: service_healthy
+      discovery-service:
         condition: service_healthy
 
   customer-service:
@@ -28,8 +46,15 @@ services:
     image: customer-service
     ports:
       - "9091:9091"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9091/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     depends_on:
       rabbitmq:
+        condition: service_healthy
+      discovery-service:
         condition: service_healthy
 
   order-service:
@@ -37,8 +62,15 @@ services:
     image: order-service
     ports:
       - "9092:9092"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9092/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     depends_on:
       rabbitmq:
+        condition: service_healthy
+      discovery-service:
         condition: service_healthy
 
   # Ontology
@@ -49,11 +81,13 @@ services:
     - "8081:8081"
     depends_on:
       product-service:
-        condition: service_started
+        condition: service_healthy
       customer-service:
-        condition: service_started
+        condition: service_healthy
       order-service:
-        condition: service_started
+        condition: service_healthy
+      discovery-service:
+        condition: service_healthy
 
   # Gateways
   inner-gateway-service:
@@ -63,11 +97,14 @@ services:
       - "8082:8082"
     depends_on:
       product-service:
-        condition: service_started
+        condition: service_healthy
       customer-service:
-        condition: service_started
+        condition: service_healthy
       order-service:
-        condition: service_started
+        condition: service_healthy
+      discovery-service:
+        condition: service_healthy
+
   gateway-service:
     container_name: gateway-service
     image: gateway-service
@@ -76,3 +113,5 @@ services:
     depends_on:
       ontological-discovery-service:
         condition: service_started
+      discovery-service:
+        condition: service_healthy

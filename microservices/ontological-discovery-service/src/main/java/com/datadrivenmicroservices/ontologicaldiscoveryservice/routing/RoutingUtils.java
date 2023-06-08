@@ -39,8 +39,7 @@ public class RoutingUtils {
             }
         }
         filteredUrl = routingUrls.getUrlWithInsertedParams(filteredUrl, requestParams);
-
-        return filteredUrl;
+        return "/" + routingUrls.getServiceName(serviceName) + filteredUrl;
     }
 
     public String routeToUrl( String uri, String requestBody, String requestMethod){
